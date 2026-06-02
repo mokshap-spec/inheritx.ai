@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IRA "AI Portal" Identity</title>
+    <style>
+        /* 
+         * Presentation Base Styles
+         */
+        :root {
+            --bg-dark: #050816;
+            --bg-light: #f8fafc;
+            --text-dark: #f8fafc;
+            --text-light: #0f172a;
+            --cyan: #00D4FF;
+            --violet: #7C3AED;
+            --purple: #A855F7;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #111;
+            color: #fff;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .presentation-header {
+            text-align: center;
+            padding: 60px 20px 40px;
+            width: 100%;
+            background: linear-gradient(180deg, rgba(124, 58, 237, 0.1) 0%, #111 100%);
+        }
+
+        .presentation-header h1 {
+            font-weight: 300;
+            letter-spacing: 2px;
+            margin: 0 0 10px;
+        }
+
+        .presentation-header p {
+            color: #9ca3af;
+            font-size: 1.1rem;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 40px;
+            width: 100%;
+            max-width: 1200px;
+            padding: 40px;
+            box-sizing: border-box;
+        }
+
+        .card {
+            background: #1a1c29;
+            border: 1px solid rgba(255,255,255,0.05);
+            border-radius: 24px;
+            padding: 40px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+            min-height: 250px;
+        }
+
+        .card-light {
+            background: var(--bg-light);
+            border-color: rgba(0,0,0,0.1);
+        }
+        .card-dark {
+            background: var(--bg-dark);
+        }
+
+        .card-label {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: #64748b;
+        }
+
+        /* 
+         * AI Portal CSS (Mirrored from main stylesheet)
+         */
+        .ira-icon-wrapper {
+            position: relative;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+        }
+
+        .ira-portal-svg {
+            overflow: visible;
+        }
+
+        .ira-portal-group {
+            transform-origin: 50px 50px;
+            transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .ira-portal-core {
+            fill: url(#inx-grad);
+            transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+            transform-origin: 50px 50px;
+        }
+
+        .ira-portal-inner {
+            stroke: url(#inx-grad);
+            stroke-width: 1.5;
+            fill: none;
+            opacity: 0.4;
+            transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .ira-portal-outer {
+            stroke: url(#inx-grad);
+            stroke-width: 2.5;
+            fill: none;
+            opacity: 0.6;
+            stroke-dasharray: 60 20;
+            stroke-dashoffset: 0;
+            transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+            transform-origin: 50px 50px;
+        }
+
+        .ira-portal-particle {
+            fill: url(#inx-grad);
+            opacity: 0;
+            transform: scale(0.5);
+            transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+            transform-origin: 50px 50px;
+        }
+
+        /* Hover Interactions */
+        .ira-hover-target:hover .ira-portal-core {
+            transform: scale(1.15);
+            filter: drop-shadow(0 0 12px rgba(124, 58, 237, 0.8));
+        }
+
+        .ira-hover-target:hover .ira-portal-outer {
+            opacity: 1;
+            transform: rotate(20deg);
+            stroke-dashoffset: -40;
+            filter: drop-shadow(0 0 8px rgba(0, 212, 255, 0.6));
+        }
+
+        .ira-hover-target:hover .ira-portal-inner {
+            opacity: 0.8;
+        }
+
+        .ira-hover-target:hover .ira-portal-particle {
+            opacity: 1;
+            transform: scale(1);
+            filter: drop-shadow(0 0 4px rgba(0, 212, 255, 0.8));
+        }
+
+        /* Layout Specifics */
+        .navbar-lockup {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-size: 1.2rem;
+            font-weight: 500;
+            color: var(--text-dark);
+        }
+        .card-light .navbar-lockup {
+            color: var(--text-light);
+        }
+
+        .launcher-button {
+            width: 64px;
+            height: 64px;
+            border-radius: 50%;
+            background: var(--bg-dark);
+            border: 1px solid rgba(255,255,255,0.1);
+            box-shadow: 0 10px 25px -5px rgba(124, 58, 237, 0.4);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        /* Auto-hover animation for the "Hover State" card */
+        @keyframes auto-hover-core {
+            0%, 100% { transform: scale(1); filter: drop-shadow(0 0 0 transparent); }
+            50% { transform: scale(1.15); filter: drop-shadow(0 0 12px rgba(124, 58, 237, 0.8)); }
+        }
+        @keyframes auto-hover-outer {
+            0%, 100% { transform: rotate(0deg); stroke-dashoffset: 0; opacity: 0.6; filter: drop-shadow(0 0 0 transparent); }
+            50% { transform: rotate(20deg); stroke-dashoffset: -40; opacity: 1; filter: drop-shadow(0 0 8px rgba(0, 212, 255, 0.6)); }
+        }
+        @keyframes auto-hover-inner {
+            0%, 100% { opacity: 0.4; }
+            50% { opacity: 0.8; }
+        }
+        @keyframes auto-hover-particle {
+            0%, 100% { opacity: 0; transform: scale(0.5); filter: drop-shadow(0 0 0 transparent); }
+            50% { opacity: 1; transform: scale(1); filter: drop-shadow(0 0 4px rgba(0, 212, 255, 0.8)); }
+        }
+
+        .auto-animating .ira-portal-core { animation: auto-hover-core 3s infinite cubic-bezier(0.4, 0, 0.2, 1); }
+        .auto-animating .ira-portal-outer { animation: auto-hover-outer 3s infinite cubic-bezier(0.4, 0, 0.2, 1); }
+        .auto-animating .ira-portal-inner { animation: auto-hover-inner 3s infinite cubic-bezier(0.4, 0, 0.2, 1); }
+        .auto-animating .ira-portal-particle { animation: auto-hover-particle 3s infinite cubic-bezier(0.4, 0, 0.2, 1); }
+
+    </style>
+</head>
+<body>
+
+    <!-- Shared Gradient Def -->
+    <svg style="width:0; height:0; position:absolute;">
+        <defs>
+            <linearGradient id="inx-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" stop-color="#00D4FF" />
+                <stop offset="50%" stop-color="#7C3AED" />
+                <stop offset="100%" stop-color="#A855F7" />
+            </linearGradient>
+        </defs>
+    </svg>
+
+    <div class="presentation-header">
+        <h1>IRA: The AI Portal</h1>
+        <p>A futuristic gateway to intelligence, knowledge, and reasoning.</p>
+    </div>
+
+    <div class="grid">
+
+        <!-- 1. Default State -->
+        <div class="card card-dark">
+            <span class="card-label">1. Default State</span>
+            <div class="ira-icon-wrapper ira-hover-target" style="width: 80px; height: 80px;">
+                <svg class="ira-portal-svg" viewBox="0 0 100 100" width="80" height="80">
+                    <g class="ira-portal-group">
+                        <circle cx="50" cy="50" r="28" class="ira-portal-inner" />
+                        <circle cx="50" cy="50" r="42" class="ira-portal-outer" />
+                        <circle cx="50" cy="8" r="4" class="ira-portal-particle" />
+                        <circle cx="86.3" cy="71" r="3" class="ira-portal-particle" />
+                        <circle cx="13.7" cy="71" r="3.5" class="ira-portal-particle" />
+                    </g>
+                    <circle cx="50" cy="50" r="16" class="ira-portal-core" />
+                </svg>
+            </div>
+            <p style="margin-top:20px; color:#64748b; font-size:0.9rem;">(Hover to interact)</p>
+        </div>
+
+        <!-- 2. Hover State (Auto-animating) -->
+        <div class="card card-dark">
+            <span class="card-label">2. Interaction Choreography</span>
+            <div class="ira-icon-wrapper auto-animating" style="width: 80px; height: 80px;">
+                <svg class="ira-portal-svg" viewBox="0 0 100 100" width="80" height="80">
+                    <g class="ira-portal-group">
+                        <circle cx="50" cy="50" r="28" class="ira-portal-inner" />
+                        <circle cx="50" cy="50" r="42" class="ira-portal-outer" />
+                        <circle cx="50" cy="8" r="4" class="ira-portal-particle" />
+                        <circle cx="86.3" cy="71" r="3" class="ira-portal-particle" />
+                        <circle cx="13.7" cy="71" r="3.5" class="ira-portal-particle" />
+                    </g>
+                    <circle cx="50" cy="50" r="16" class="ira-portal-core" />
+                </svg>
+            </div>
+            <p style="margin-top:20px; color:#64748b; font-size:0.9rem;">0.8s ease-in-out rotation & energy sweep</p>
+        </div>
+
+        <!-- 3. Navbar Version -->
+        <div class="card card-dark">
+            <span class="card-label">3. Navbar Integration</span>
+            <div class="navbar-lockup ira-hover-target">
+                <div class="ira-icon-wrapper">
+                    <svg class="ira-portal-svg" viewBox="0 0 100 100" width="40" height="40">
+                        <g class="ira-portal-group">
+                            <circle cx="50" cy="50" r="28" class="ira-portal-inner" />
+                            <circle cx="50" cy="50" r="42" class="ira-portal-outer" />
+                            <circle cx="50" cy="8" r="4" class="ira-portal-particle" />
+                            <circle cx="86.3" cy="71" r="3" class="ira-portal-particle" />
+                            <circle cx="13.7" cy="71" r="3.5" class="ira-portal-particle" />
+                        </g>
+                        <circle cx="50" cy="50" r="16" class="ira-portal-core" />
+                    </svg>
+                </div>
+                <span>Ask IRA</span>
+            </div>
+        </div>
+
+        <!-- 4. Chat Launcher -->
+        <div class="card card-dark">
+            <span class="card-label">4. Chat Launcher (FAB)</span>
+            <div class="launcher-button ira-hover-target">
+                <div class="ira-icon-wrapper" style="width: 44px; height: 44px;">
+                    <svg class="ira-portal-svg" viewBox="0 0 100 100" width="44" height="44">
+                        <g class="ira-portal-group">
+                            <circle cx="50" cy="50" r="28" class="ira-portal-inner" />
+                            <circle cx="50" cy="50" r="42" class="ira-portal-outer" />
+                            <circle cx="50" cy="8" r="4" class="ira-portal-particle" />
+                            <circle cx="86.3" cy="71" r="3" class="ira-portal-particle" />
+                            <circle cx="13.7" cy="71" r="3.5" class="ira-portal-particle" />
+                        </g>
+                        <circle cx="50" cy="50" r="16" class="ira-portal-core" />
+                    </svg>
+                </div>
+            </div>
+        </div>
+
+        <!-- 5. Light Theme -->
+        <div class="card card-light">
+            <span class="card-label">5. Light Theme Navbar</span>
+            <div class="navbar-lockup ira-hover-target">
+                <div class="ira-icon-wrapper">
+                    <svg class="ira-portal-svg" viewBox="0 0 100 100" width="40" height="40">
+                        <g class="ira-portal-group">
+                            <circle cx="50" cy="50" r="28" class="ira-portal-inner" />
+                            <circle cx="50" cy="50" r="42" class="ira-portal-outer" />
+                            <circle cx="50" cy="8" r="4" class="ira-portal-particle" />
+                            <circle cx="86.3" cy="71" r="3" class="ira-portal-particle" />
+                            <circle cx="13.7" cy="71" r="3.5" class="ira-portal-particle" />
+                        </g>
+                        <circle cx="50" cy="50" r="16" class="ira-portal-core" />
+                    </svg>
+                </div>
+                <span>Ask IRA</span>
+            </div>
+        </div>
+
+    </div>
+
+</body>
+</html>

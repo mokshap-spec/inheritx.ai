@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>InheritX Solutions - AI-Native Brand Identity</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+        
+        :root {
+            --bg-deep: #050816;
+            --bg-light: #ffffff;
+            --text-dark: #ffffff;
+            --text-light: #111827;
+            --font-main: 'Inter', sans-serif;
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: var(--font-main);
+            background-color: var(--bg-deep);
+            color: var(--text-dark);
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 80px 40px;
+        }
+        
+        /* Typography */
+        h1, h2, h3 { font-weight: 600; letter-spacing: -0.02em; }
+        h1 { font-size: 3rem; margin-bottom: 10px; }
+        .subtitle { color: #9ca3af; font-size: 1.2rem; margin-bottom: 80px; }
+        
+        /* Grid Layout */
+        .presentation-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 40px;
+            margin-bottom: 80px;
+        }
+
+        .presentation-card {
+            background: rgba(255,255,255,0.02);
+            border: 1px solid rgba(255,255,255,0.05);
+            border-radius: 16px;
+            padding: 40px;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .presentation-card h3 {
+            margin-top: 0;
+            font-size: 1.1rem;
+            color: #9ca3af;
+            margin-bottom: 30px;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+            padding-bottom: 15px;
+        }
+
+        .card-content {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-grow: 1;
+            min-height: 200px;
+        }
+        
+        /* Light Theme Override */
+        .theme-light {
+            background: var(--bg-light);
+            border: 1px solid #e5e7eb;
+        }
+        .theme-light h3 { color: #6b7280; border-bottom-color: #e5e7eb; }
+
+        /* The SVG Animation Core CSS */
+        .inx-logo-svg {
+            cursor: pointer;
+            overflow: visible;
+        }
+        
+        .inx-logo-svg .logo-core {
+            fill: url(#inx-grad);
+            transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .inx-logo-svg .logo-ring {
+            stroke: url(#inx-grad);
+            stroke-width: 1.5;
+            fill: none;
+            opacity: 0.3;
+            transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .inx-logo-svg .logo-nodes {
+            transform-origin: 50px 50px;
+            transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .inx-logo-svg .logo-nodes circle {
+            fill: url(#inx-grad);
+            transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .inx-logo-svg .logo-connections line {
+            stroke: url(#inx-grad);
+            stroke-width: 1.5;
+            stroke-dasharray: 40;
+            stroke-dashoffset: 40;
+            opacity: 0;
+            transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        /* Hover States for Logo */
+        .inx-logo-container {
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        /* Target the SVG when container is hovered to allow lockups to work */
+        .inx-logo-container:hover .inx-logo-svg .logo-core {
+            transform-origin: 50px 50px;
+            transform: scale(1.15);
+            filter: drop-shadow(0 0 12px rgba(124, 58, 237, 0.8));
+        }
+
+        .inx-logo-container:hover .inx-logo-svg .logo-ring {
+            opacity: 0.8;
+            filter: drop-shadow(0 0 6px rgba(0, 212, 255, 0.5));
+        }
+
+        .inx-logo-container:hover .inx-logo-svg .logo-nodes {
+            transform: rotate(25deg);
+        }
+
+        .inx-logo-container:hover .inx-logo-svg .logo-connections line {
+            stroke-dashoffset: 0;
+            opacity: 0.8;
+        }
+
+        /* Typography Lockup */
+        .inx-logo-text {
+            font-family: var(--font-main);
+            font-weight: 700;
+            font-size: 24px;
+            letter-spacing: -0.03em;
+            color: #ffffff;
+            line-height: 1;
+        }
+        
+        .theme-light .inx-logo-text {
+            color: #111827;
+        }
+        
+        .favicon-preview {
+            width: 32px;
+            height: 32px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: #ffffff;
+            border-radius: 8px;
+            padding: 8px;
+        }
+
+        .navbar-preview {
+            width: 100%;
+            height: 80px;
+            background: rgba(255,255,255,0.03);
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+            display: flex;
+            align-items: center;
+            padding: 0 40px;
+            justify-content: space-between;
+        }
+
+        .navbar-links {
+            display: flex;
+            gap: 24px;
+            color: #9ca3af;
+            font-size: 0.9rem;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>InheritX Solutions</h1>
+        <p class="subtitle">AI-Native Brand Identity System</p>
+
+        <!-- Keep SVG Defs up here to be reused -->
+        <svg width="0" height="0" style="position:absolute">
+            <defs>
+                <linearGradient id="inx-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+                    <stop offset="0%" stop-color="#00D4FF" />
+                    <stop offset="50%" stop-color="#7C3AED" />
+                    <stop offset="100%" stop-color="#A855F7" />
+                </linearGradient>
+            </defs>
+        </svg>
+
+        <div class="presentation-grid">
+            
+            <!-- 1. Logo Mark -->
+            <div class="presentation-card">
+                <h3>1. Interactive Logo Mark (Hover to Activate)</h3>
+                <div class="card-content">
+                    <div class="inx-logo-container">
+                        <svg class="inx-logo-svg" viewBox="0 0 100 100" width="100" height="100">
+                            <!-- Orbit Ring -->
+                            <circle cx="50" cy="50" r="32" class="logo-ring" />
+                            <!-- Connections -->
+                            <g class="logo-connections">
+                                <line x1="50" y1="50" x2="50" y2="18" />
+                                <line x1="50" y1="50" x2="82" y2="50" />
+                                <line x1="50" y1="50" x2="50" y2="82" />
+                                <line x1="50" y1="50" x2="18" y2="50" />
+                            </g>
+                            <!-- Core -->
+                            <circle cx="50" cy="50" r="14" class="logo-core" />
+                            <!-- Nodes -->
+                            <g class="logo-nodes">
+                                <circle cx="50" cy="18" r="4.5" />
+                                <circle cx="82" cy="50" r="4.5" />
+                                <circle cx="50" cy="82" r="4.5" />
+                                <circle cx="18" cy="50" r="4.5" />
+                            </g>
+                        </svg>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 2. Full Lockup -->
+            <div class="presentation-card">
+                <h3>2. Full Logo Lockup</h3>
+                <div class="card-content">
+                    <div class="inx-logo-container">
+                        <svg class="inx-logo-svg" viewBox="0 0 100 100" width="40" height="40">
+                            <circle cx="50" cy="50" r="32" class="logo-ring" />
+                            <g class="logo-connections">
+                                <line x1="50" y1="50" x2="50" y2="18" />
+                                <line x1="50" y1="50" x2="82" y2="50" />
+                                <line x1="50" y1="50" x2="50" y2="82" />
+                                <line x1="50" y1="50" x2="18" y2="50" />
+                            </g>
+                            <circle cx="50" cy="50" r="14" class="logo-core" />
+                            <g class="logo-nodes">
+                                <circle cx="50" cy="18" r="4.5" />
+                                <circle cx="82" cy="50" r="4.5" />
+                                <circle cx="50" cy="82" r="4.5" />
+                                <circle cx="18" cy="50" r="4.5" />
+                            </g>
+                        </svg>
+                        <span class="inx-logo-text">InheritX</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 3. Light Theme -->
+            <div class="presentation-card theme-light">
+                <h3>3. Light Theme Lockup</h3>
+                <div class="card-content">
+                    <div class="inx-logo-container">
+                        <svg class="inx-logo-svg" viewBox="0 0 100 100" width="40" height="40">
+                            <circle cx="50" cy="50" r="32" class="logo-ring" />
+                            <g class="logo-connections">
+                                <line x1="50" y1="50" x2="50" y2="18" />
+                                <line x1="50" y1="50" x2="82" y2="50" />
+                                <line x1="50" y1="50" x2="50" y2="82" />
+                                <line x1="50" y1="50" x2="18" y2="50" />
+                            </g>
+                            <circle cx="50" cy="50" r="14" class="logo-core" />
+                            <g class="logo-nodes">
+                                <circle cx="50" cy="18" r="4.5" />
+                                <circle cx="82" cy="50" r="4.5" />
+                                <circle cx="50" cy="82" r="4.5" />
+                                <circle cx="18" cy="50" r="4.5" />
+                            </g>
+                        </svg>
+                        <span class="inx-logo-text">InheritX</span>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- 4. Favicon (32x32) -->
+            <div class="presentation-card">
+                <h3>4. Favicon Scale Readability (32x32)</h3>
+                <div class="card-content">
+                    <div class="favicon-preview">
+                        <svg class="inx-logo-svg" viewBox="0 0 100 100" width="32" height="32">
+                            <circle cx="50" cy="50" r="32" class="logo-ring" />
+                            <g class="logo-connections">
+                                <line x1="50" y1="50" x2="50" y2="18" />
+                                <line x1="50" y1="50" x2="82" y2="50" />
+                                <line x1="50" y1="50" x2="50" y2="82" />
+                                <line x1="50" y1="50" x2="18" y2="50" />
+                            </g>
+                            <circle cx="50" cy="50" r="14" class="logo-core" />
+                            <g class="logo-nodes">
+                                <circle cx="50" cy="18" r="4.5" />
+                                <circle cx="82" cy="50" r="4.5" />
+                                <circle cx="50" cy="82" r="4.5" />
+                                <circle cx="18" cy="50" r="4.5" />
+                            </g>
+                        </svg>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 5. Navbar Integration -->
+        <div class="presentation-card" style="padding: 0; overflow: hidden;">
+            <h3 style="padding: 40px 40px 0;">5. Enterprise Navbar Context</h3>
+            <div class="navbar-preview">
+                <div class="inx-logo-container">
+                    <svg class="inx-logo-svg" viewBox="0 0 100 100" width="36" height="36">
+                        <circle cx="50" cy="50" r="32" class="logo-ring" />
+                        <g class="logo-connections">
+                            <line x1="50" y1="50" x2="50" y2="18" />
+                            <line x1="50" y1="50" x2="82" y2="50" />
+                            <line x1="50" y1="50" x2="50" y2="82" />
+                            <line x1="50" y1="50" x2="18" y2="50" />
+                        </g>
+                        <circle cx="50" cy="50" r="14" class="logo-core" />
+                        <g class="logo-nodes">
+                            <circle cx="50" cy="18" r="4.5" />
+                            <circle cx="82" cy="50" r="4.5" />
+                            <circle cx="50" cy="82" r="4.5" />
+                            <circle cx="18" cy="50" r="4.5" />
+                        </g>
+                    </svg>
+                    <span class="inx-logo-text" style="font-size: 20px;">InheritX</span>
+                </div>
+                <div class="navbar-links">
+                    <span>Products</span>
+                    <span>Solutions</span>
+                    <span>Developers</span>
+                    <span>Company</span>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</body>
+</html>
