@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>InheritX Solutions - AI & Mobility Innovation</title>
+    <meta name="description"
+        content="Empowering the future with mobility & AI innovation. Experience excellence with InheritX Solutions.">
+    <!-- Google Fonts for Typography -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
+    <!-- Boxicons for minimalistic icons -->
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <!-- Stylesheet -->
+    <link rel="stylesheet" href="style.css">
+    <!-- Spline 3D Viewer -->
+    <script type="module" src="https://unpkg.com/@splinetool/viewer@1.9.54/build/spline-viewer.js"></script>
+</head>
+
+<body>
+    <!-- Background Canvas for Particles -->
+    <canvas id="particle-canvas"></canvas>
+
+    <!-- Ambient glowing backgrounds -->
+    <div class="ambient-light light-1"></div>
+    <div class="ambient-light light-2"></div>
+
+    <!-- Top Information Bar -->
+    <div class="top-bar fade-in">
+        <div class="contact-items">
+            <div class="contact-item">
+                <i class='bx bx-envelope'></i>
+                <span>contact@inheritx.com</span>
+            </div>
+            <div class="contact-item">
+                <i class='bx bx-phone-call'></i>
+                <span>Sales Inquiries: +91 8487006480</span>
+            </div>
+            <div class="contact-item">
+                <i class='bx bx-briefcase'></i>
+                <span>Career Inquiries: +91 8160047106</span>
+            </div>
+        </div>
+        <div class="social-items">
+            <a href="#"><i class='bx bxl-instagram'></i></a>
+            <a href="#"><i class='bx bxl-facebook'></i></a>
+            <a href="#"><i class='bx bxl-twitter'></i></a>
+            <a href="#"><i class='bx bxl-linkedin'></i></a>
+        </div>
+    </div>
+
+    <!-- Navigation Bar -->
+    <nav class="navbar glass-effect fade-in delay-1">
+        <div class="logo">
+            <img src="https://www.inheritx.com/image/logo/inx-logo.svg" alt="InheritX Logo" class="logo-img">
+        </div>
+        <div class="nav-links">
+            <a href="#" class="nav-link">Solutions</a>
+            <a href="#" class="nav-link">AI Agents</a>
+            <a href="#" class="nav-link">Industries</a>
+            <a href="#" class="nav-link">Case Studies</a>
+            <a href="#" class="nav-link">Insights</a>
+            <a href="#" class="nav-link">Company</a>
+            <a href="#" class="nav-link">Contact</a>
+        </div>
+        <div class="nav-actions">
+            <a href="#" class="btn-primary">
+                <span class="btn-content">Book AI Strategy Call</span>
+                <div class="btn-border"></div>
+            </a>
+            <!-- Mobile Menu Toggle -->
+            <button class="menu-toggle" aria-label="Toggle Menu">
+                <i class='bx bx-menu'></i>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Mobile Navigation Menu -->
+    <div class="mobile-menu glass-effect">
+        <button class="close-menu" aria-label="Close Menu"><i class='bx bx-x'></i></button>
+        <div class="mobile-nav-links">
+            <a href="#">Solutions</a>
+            <a href="#">AI Agents</a>
+            <a href="#">Industries</a>
+            <a href="#">Case Studies</a>
+            <a href="#">Insights</a>
+            <a href="#">Company</a>
+            <a href="#">Contact</a>
+        </div>
+    </div>
+
+    <!-- Hero Section -->
+    <main class="hero">
+        <div class="container hero-grid">
+            <!-- Left Content -->
+            <div class="hero-content">
+                <div class="label-badge fade-up delay-3">
+                    <i class='bx bx-brain'></i>
+                    INTELLIGENCE ORCHESTRATION
+                </div>
+
+                <h1 class="hero-title fade-up delay-4">
+                    Build Autonomous <br>
+                    <span class="text-gradient">AI Systems That Operate Like</span><br>
+                    Your Best Employees
+                </h1>
+
+                <p class="hero-description fade-up delay-5">
+                    We architect multi-agent systems, LLM orchestration layers, and autonomous workflows that transform
+                    raw data into intelligent enterprise decision engines.
+                </p>
+
+                <div class="hero-actions fade-up delay-6"
+                    style="display: flex; gap: 24px; align-items: center; margin-bottom: 50px;">
+                    <a href="#" class="btn-primary">
+                        <span class="btn-content">
+                            Book AI Strategy Call
+                            <i class='bx bx-right-arrow-alt'></i>
+                        </span>
+                        <div class="btn-border"></div>
+                    </a>
+                    <a href="#" class="btn-secondary">
+                        Explore AI Solutions
+                    </a>
+                </div>
+                <div class="hero-metrics fade-up delay-7"
+                    style="display: flex; gap: 30px; margin-bottom: 20px; flex-wrap: wrap;">
+                    <div style="display: flex; align-items: flex-start; gap: 10px;">
+                        <div style="font-size: 1.6rem; color: var(--accent-cyan); margin-top: 2px;"><i
+                                class='bx bx-rocket'></i></div>
+                        <div>
+                            <h4
+                                style="font-size: 1.4rem; color: var(--text-main); font-family: var(--font-heading); margin-bottom: 2px; font-weight: 700;">
+                                850+</h4>
+                            <p style="font-size: 0.85rem; color: var(--text-muted); margin: 0;">AI Pipelines Deployed
+                            </p>
+                        </div>
+                    </div>
+                    <div style="display: flex; align-items: flex-start; gap: 10px;">
+                        <div style="font-size: 1.6rem; color: var(--accent-cyan); margin-top: 2px;"><i
+                                class='bx bx-globe'></i></div>
+                        <div>
+                            <h4
+                                style="font-size: 1.4rem; color: var(--text-main); font-family: var(--font-heading); margin-bottom: 2px; font-weight: 700;">
+                                2B+</h4>
+                            <p style="font-size: 0.85rem; color: var(--text-muted); margin: 0;">Tokens Processed Daily
+                            </p>
+                        </div>
+                    </div>
+                    <div style="display: flex; align-items: flex-start; gap: 10px;">
+                        <div style="font-size: 1.6rem; color: var(--accent-cyan); margin-top: 2px;"><i
+                                class='bx bx-network-chart'></i></div>
+                        <div>
+                            <h4
+                                style="font-size: 1.4rem; color: var(--text-main); font-family: var(--font-heading); margin-bottom: 2px; font-weight: 700;">
+                                150+</h4>
+                            <p style="font-size: 0.85rem; color: var(--text-muted); margin: 0;">AI Engineers & Data
+                                Scientists</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Right Visual -->
+            <div class="hero-visual fade-up delay-7">
+                <div class="robot-container">
+                    <!-- Spline 3D Scene -->
+                    <spline-viewer url="https://prod.spline.design/B5R2sBbuGwPhke7D/scene.splinecode"
+                        logo="false"></spline-viewer>
+                </div>
+
+                <!-- Neural Pathways SVG Layer -->
+                <svg id="neural-svg" class="neural-pathways">
+                    <defs>
+                        <linearGradient id="neural-gradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                            <stop offset="0%" stop-color="#06b6d4" />
+                            <stop offset="100%" stop-color="transparent" />
+                        </linearGradient>
+                    </defs>
+                </svg>
+
+
+                <!-- Floating Information Ecosystem -->
+                <div class="floating-ecosystem">
+                    <div class="nodes-container">
+                        <!-- Node 1: AI Agents (Mid Left) -->
+                        <div class="holographic-capsule node-1" id="node-1">
+                            <div class="capsule-glow"></div>
+                            <i class='bx bx-bot'></i>
+                            <div class="fc-content">
+                                <h5>AI AGENTS</h5>
+                                <p><span class="status-dot"></span>7 Active Workflows</p>
+                            </div>
+                        </div>
+
+                        <!-- Node 2: Generative AI (Top Right) -->
+                        <div class="holographic-capsule node-2" id="node-2">
+                            <div class="capsule-glow"></div>
+                            <i class='bx bx-layer'></i>
+                            <div class="fc-content">
+                                <h5>GENERATIVE AI</h5>
+                                <p><span class="status-dot"></span>LLM Systems Running</p>
+                            </div>
+                        </div>
+
+                        <!-- Node 3: Enterprise Platforms (Mid Right) -->
+                        <div class="holographic-capsule node-3" id="node-3">
+                            <div class="capsule-glow"></div>
+                            <i class='bx bx-network-chart'></i>
+                            <div class="fc-content">
+                                <h5>ENTERPRISE PLATFORMS</h5>
+                                <p><span class="status-dot"></span>12 Production Systems</p>
+                            </div>
+                        </div>
+
+                        <!-- Node 4: Cloud Infrastructure (Bottom Right) -->
+                        <div class="holographic-capsule node-4" id="node-4">
+                            <div class="capsule-glow"></div>
+                            <i class='bx bx-data'></i>
+                            <div class="fc-content">
+                                <h5>CLOUD INFRASTRUCTURE</h5>
+                                <p><span class="status-dot"></span>99.99% Availability</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Main Script -->
+    <script src="script.js"></script>
+</body>
+
+</html>
