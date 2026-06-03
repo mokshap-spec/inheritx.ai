@@ -1881,6 +1881,33 @@ spline-viewer::part(logo) {
     transform: scale(1.1) rotate(0deg);
 }
 
+/* Option 5: Diamond/Star (No default sparkles, animated hover) */
+.option-5 .default-icon {
+    transition: all 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+    opacity: 1;
+    transform: scale(1) rotate(0deg);
+}
+
+.option-5 .hover-icon {
+    position: absolute;
+    top: 0;
+    left: 0;
+    opacity: 0;
+    transition: all 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+    transform: scale(0.5) rotate(-30deg);
+}
+
+.option-5:hover .default-icon {
+    opacity: 1;
+    transform: scale(0.9) rotate(0deg);
+    filter: drop-shadow(0 0 8px rgba(124, 58, 237, 0.6));
+}
+
+.option-5:hover .hover-icon {
+    opacity: 1;
+    transform: scale(1) rotate(0deg);
+}
+
 /* Option 2: Command Center V2 Animations */
 .option-2 .inx-logo-svg {
     overflow: visible;
